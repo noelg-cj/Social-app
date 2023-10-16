@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:social_app/components/my_button.dart';
 import 'package:social_app/components/my_textfield.dart';
 
-class LoginPage extends StatelessWidget {
+class RegisterPage extends StatelessWidget {
 
   // text controllers
+  final TextEditingController usernameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPwController = TextEditingController();
 
 
-  LoginPage({super.key});
+  RegisterPage({super.key});
 
-  void login() {}
+  void register() {}
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +46,14 @@ class LoginPage extends StatelessWidget {
       
             //email textfield
             MyTextField(
+              hintText: "Username", 
+              obscureText: false, 
+              controller: usernameController
+            ),
+
+            const SizedBox(height: 10,),
+
+            MyTextField(
               hintText: "Email", 
               obscureText: false, 
               controller: emailController
@@ -58,20 +68,19 @@ class LoginPage extends StatelessWidget {
             ),
 
             const SizedBox(height: 10,),
-            // forgot password
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Text("Forgot Password?", style: TextStyle(color: Theme.of(context).colorScheme.secondary),),
-              ],
+
+            MyTextField(
+              hintText: "Confirm Password", 
+              obscureText: true, 
+              controller: confirmPwController
             ),
 
             const SizedBox(height: 25,),
 
             // sign in button
             MyButton(
-              text: "Login", 
-              onTap: login
+              text: "Register", 
+              onTap: register
             ),
 
             const SizedBox(height: 25),
@@ -81,7 +90,7 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Don't have an account?",
+                  "Already have an account?",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.inversePrimary
                   )
@@ -89,7 +98,7 @@ class LoginPage extends StatelessWidget {
                 GestureDetector(
                   onTap: () {},
                   child: const Text(
-                    " Register now!",
+                    " Login",
                     style: TextStyle(
                       fontWeight: FontWeight.bold
                     )
