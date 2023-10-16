@@ -3,15 +3,15 @@ import 'package:social_app/components/my_button.dart';
 import 'package:social_app/components/my_textfield.dart';
 
 class LoginPage extends StatelessWidget {
+  final void Function()? onTap;
+
+  LoginPage({super.key, required this.onTap});
+
+  void login() {}
 
   // text controllers
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-
-  LoginPage({super.key});
-
-  void login() {}
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,7 @@ class LoginPage extends StatelessWidget {
                   )
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: onTap,
                   child: const Text(
                     " Register now!",
                     style: TextStyle(
