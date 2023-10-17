@@ -2,18 +2,47 @@ import 'package:flutter/material.dart';
 import 'package:social_app/components/my_button.dart';
 import 'package:social_app/components/my_textfield.dart';
 
-class RegisterPage extends StatelessWidget {
+import '../helper/helper_functions.dart';
+
+class RegisterPage extends StatefulWidget {
   final void Function()? onTap;
   
-  RegisterPage({super.key, required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
 
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
   // text controllers
   final TextEditingController usernameController = TextEditingController();
+
   final TextEditingController emailController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
+
   final TextEditingController confirmPwController = TextEditingController();
 
+  void registerUser() {
+    // show loading circle
+    showDialog(
+      context: context, 
+      builder: (context) => const Center(
+        child: CircularProgressIndicator(),
+      )
+    );
 
+    // check passwords 
+    if (passwordController.text != confirmPwController.text) {
+      // pop loading circle
+      Navigator.pop(context);
+
+      // show error
+      displayMessageToUser("Passwords don't match!", context);
+    }
+
+    // try creating the user
+  }
 
   void register() {}
 
@@ -98,7 +127,7 @@ class RegisterPage extends StatelessWidget {
                   )
                 ),
                 GestureDetector(
-                  onTap: onTap,
+                  onTap: widget.onTap,
                   child: const Text(
                     " Login",
                     style: TextStyle(
