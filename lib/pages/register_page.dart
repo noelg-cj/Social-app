@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:social_app/components/my_button.dart';
 import 'package:social_app/components/my_textfield.dart';
@@ -23,7 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final TextEditingController confirmPwController = TextEditingController();
 
-  void registerUser() {
+  void registerUser() async {
     // show loading circle
     showDialog(
       context: context, 
@@ -42,6 +43,15 @@ class _RegisterPageState extends State<RegisterPage> {
     }
 
     // try creating the user
+    try {
+      UserCredential? userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+
+      displayMessageToUser(e.code, context);
+    }
   }
 
   void register() {}
@@ -111,7 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
             // sign in button
             MyButton(
               text: "Register", 
-              onTap: register
+              onTap: registerUser
             ),
 
             const SizedBox(height: 25),
