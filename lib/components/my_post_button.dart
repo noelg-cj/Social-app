@@ -9,8 +9,17 @@ class PostButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        padding: EdgeInsets.all(16),
+        margin: EdgeInsets.only(left: 10),
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.secondary
+          color: Theme.of(context).colorScheme.secondary,
+          borderRadius: BorderRadius.circular(12)
+        ),
+        child: Center(
+          child: Icon(
+            Icons.done,
+            color: Theme.of(context).colorScheme.primary,
+          ),
         ),
       ),
     );
