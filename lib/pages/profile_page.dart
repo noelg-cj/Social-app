@@ -42,8 +42,8 @@ class ProfilePage extends StatelessWidget {
 
             return Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(height: 50),
                   Container(
                     decoration: BoxDecoration(
                       color: Theme.of(context).colorScheme.primary,
@@ -60,7 +60,7 @@ class ProfilePage extends StatelessWidget {
 
                   Text(
                     user!['username'],
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold
                     )
