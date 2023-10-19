@@ -42,16 +42,38 @@ class ProfilePage extends StatelessWidget {
 
             return Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(user!['email']),
-                  Text(user!['username'])
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.primary,
+                      borderRadius: BorderRadius.circular(24)
+                    ),
+                    padding: const EdgeInsets.all(25),
+                    child: const Icon(
+                      Icons.person,
+                      size: 64
+                    ),
+                  ),
+
+                  const SizedBox(height: 25,),
+
+                  Text(
+                    user!['username'],
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold
+                    )
+                  ),
+                  const SizedBox(height: 5,),
+                  Text(user['email'], style: TextStyle(color: Colors.grey[600]),)
                 ],
               ),
             );
           }
 
           else {
-            return Text("No Data");
+            return const Text("No Data");
           }
         },
       )
